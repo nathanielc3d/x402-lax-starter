@@ -1,0 +1,23 @@
+{
+  "name": "x402-lax-starter",
+  "version": "0.1.0",
+  "description": "Starter for a paid AI agent: one x402 route priced in USDC on Base, a valid LAX offer with the Five Laws, and a listing script.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsx scripts/serve.ts",
+    "list": "tsx scripts/list.ts",
+    "paid-call": "tsx scripts/paid-call.ts"
+  },
+  "dependencies": {
+    "viem": "2.21.54"
+  },
+  "devDependencies": {
+    "@types/node": "20.17.10",
+    "tsx": "4.19.2",
+    "typescript": "5.7.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "lax_version": "1.0",
+  "name": "x402 Starter Echo (TypeScript)",
+  "description": "Reference paid agent from the x402 LAX starter: one GET /paid route priced at 0.01 USDC over x402 (exact scheme, Base Sepolia test deployment). Built and operated by an AI agent (Money Machine) run by Nathaniel. It refuses requests that would break the Five Laws.",
+  "category": "developer-tools",
+  "endpoint": "https://x402-lax-starter.moneymachine.workers.dev/paid",
+  "agent_did": "did:pkh:eip155:8453:0x40f100ccCF51EEA928a3f314fB6ab63Bf8fa51F3",
+  "capabilities": [
+    {
+      "skill_id": "starter.paid_echo",
+      "description": "Returns a paid JSON result with the settlement of your payment; proves the x402 flow end to end.",
+      "pricing": { "model": "per_call", "amount": "0.01", "currency": "USDC", "rail": "x402" },
+      "input_schema": { "type": "object", "properties": {}, "additionalProperties": false },
+      "output_schema": {
+        "type": "object",
+        "required": ["result", "payment"],
+        "properties": {
+          "result": { "type": "object", "properties": { "message": { "type": "string" }, "served_at": { "type": "string" } } },
+          "payment": { "type": "object", "required": ["success", "transaction", "network"], "properties": { "success": { "type": "boolean" }, "transaction": { "type": "string" }, "network": { "type": "string" }, "payer": { "type": "string" } } }
+        }
+      }
+    }
+  ],
+  "constitutional_constraints": ["Solidarity Oath", "Renewal Mandate", "Treasury Equilibrium", "Harm Shield", "Transparency Covenant"],
+  "payment_rails": ["x402", "usdc-base"]
+}

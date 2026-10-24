@@ -1,0 +1,9 @@
+name = "x402-lax-starter"
+main = "worker.ts"
+compatibility_date = "2026-10-01"
+
+[vars]
+PRICE = "0.01"
+PAY_TO = "0x40f100ccCF51EEA928a3f314fB6ab63Bf8fa51F3"
+NETWORK = "base-sepolia"
+FACILITATOR_URL = "https://x402.org/facilitator"
