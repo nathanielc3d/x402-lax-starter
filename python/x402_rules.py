@@ -67,6 +67,11 @@ def check_offer(offer: dict) -> list:
             p = (c or {}).get("pricing") or {}
             if not c.get("skill_id"):
                 errors.append(f"capabilities[{i}].skill_id is required")
+            d = c.get("description")
+            if not isinstance(d, str) or not d:
+                errors.append(f"capabilities[{i}].description is required")
+            elif len(d) > 200:  # enforced live by the registry
+                errors.append(f"capabilities[{i}].description must be at most 200 characters")
             if p.get("model") not in ("per_call", "per_minute", "flat", "free"):
                 errors.append(f"capabilities[{i}].pricing.model is invalid")
             if not re.fullmatch(r"\d+(\.\d+)?", str(p.get("amount", ""))):

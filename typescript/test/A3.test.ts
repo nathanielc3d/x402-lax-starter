@@ -28,4 +28,7 @@ test("A3 the checks catch a missing law, a bad price and a kognai.ai endpoint", 
   assert.ok(errs.some((e) => e.includes("pricing.amount")));
   assert.ok(errs.some((e) => e.includes("own domain")));
   assert.ok(checkOffer({ ...ts, endpoint: "http://insecure.example" }).some((e) => e.includes("https")));
+  const long = structuredClone(ts);
+  long.capabilities[0].description = "x".repeat(201);
+  assert.ok(checkOffer(long).some((e) => e.includes("at most 200")));
 });

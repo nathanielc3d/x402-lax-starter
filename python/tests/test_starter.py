@@ -95,6 +95,9 @@ def test_A3_offer_passes_checks_with_five_laws():
     broken = dict(offer, constitutional_constraints=FIVE_LAWS[:4], endpoint="https://lax.kognai.ai/x")
     errs = check_offer(broken)
     assert any("Transparency Covenant" in e for e in errs) and any("own domain" in e for e in errs)
+    long = json.loads(json.dumps(offer))
+    long["capabilities"][0]["description"] = "x" * 201
+    assert any("at most 200" in e for e in check_offer(long))
 
 
 class Resp:

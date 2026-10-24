@@ -52,6 +52,7 @@ export function checkOffer(offer: LaxOffer): string[] {
   else caps.forEach((c: LaxCapability, i: number) => {
     if (!c || typeof c.skill_id !== "string" || !c.skill_id) errors.push(`capabilities[${i}].skill_id is required`);
     if (!c || typeof c.description !== "string" || !c.description) errors.push(`capabilities[${i}].description is required`);
+    else if (c.description.length > 200) errors.push(`capabilities[${i}].description must be at most 200 characters`); // enforced live by the registry
     const p = c?.pricing;
     if (!p || !["per_call", "per_minute", "flat", "free"].includes(p.model)) errors.push(`capabilities[${i}].pricing.model must be per_call, per_minute, flat or free`);
     if (!p || typeof p.amount !== "string" || !/^\d+(\.\d+)?$/.test(p.amount)) errors.push(`capabilities[${i}].pricing.amount must be a decimal string like "0.05"`);
